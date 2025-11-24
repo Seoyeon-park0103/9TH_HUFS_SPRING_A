@@ -45,8 +45,8 @@ public class Review extends BaseEntity {
     @Column(name = "body", columnDefinition = "TEXT", nullable = false)
     private String body;
 
-    @Column(name="created_at")
-    private LocalDateTime createdAt;
+    //@Column(name="created_at")
+    //private LocalDateTime createdAt;
 
 
 }

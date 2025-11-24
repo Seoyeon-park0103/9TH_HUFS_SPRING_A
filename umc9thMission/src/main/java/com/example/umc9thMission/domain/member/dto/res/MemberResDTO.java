@@ -1,9 +1,11 @@
-package com.example.umc9thMission.domain.review.dto.res;
+package com.example.umc9thMission.domain.member.dto.res;
 
 import lombok.Builder;
 import lombok.Getter;
 
-public class ResDTO {
+import java.time.LocalDateTime;
+
+public class MemberResDTO {
     @Builder
     @Getter
     public static class Testing{
@@ -16,4 +18,9 @@ public class ResDTO {
         private String testString;
     }
 
+    @Builder
+    public record JoinDTO(
+            Long memberId,
+            LocalDateTime createAt
+    ){}
 }
