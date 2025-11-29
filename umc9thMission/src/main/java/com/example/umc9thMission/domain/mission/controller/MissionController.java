@@ -1,5 +1,8 @@
 package com.example.umc9thMission.domain.mission.controller;
 
+import com.example.umc9thMission.domain.mission.dto.res.MissionResDTO;
+import com.example.umc9thMission.domain.mission.exception.code.MissionSuccessCode;
+import com.example.umc9thMission.domain.mission.service.query.MissionQueryService;
 import com.example.umc9thMission.domain.test.converter.TestConverter;
 import com.example.umc9thMission.domain.test.dto.res.TestResDTO;
 import com.example.umc9thMission.domain.test.service.query.TestQueryService;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MissionController {
 
     private final TestQueryService testQueryService;
+    private  final MissionQueryService missionQueryService;
 
     @GetMapping("/{missionId}")
     public ApiResponse<TestResDTO.Testing> test() throws Exception{
@@ -39,5 +43,18 @@ public class MissionController {
         GeneralSuccessCode code = GeneralSuccessCode.SUCCESS;
         return ApiResponse.onSuccess(code, TestConverter.toExceptionDTO("This is Test!"));
     }
+
+    @GetMapping("/restaurant")
+    public ApiResponse<MissionResDTO.MissionPreviewListDTO> getRestaurantMissions(
+            @RequestParam Long restaurantId,
+            @RequestParam Integer page
+    ){
+        MissionSuccessCode code = MissionSuccessCode.FOUND;
+        return ApiResponse.onSuccess(
+                code,
+                missionQueryService.findMissionByRestaurant(restaurantId, page)
+        );
+    }
+
 
 }

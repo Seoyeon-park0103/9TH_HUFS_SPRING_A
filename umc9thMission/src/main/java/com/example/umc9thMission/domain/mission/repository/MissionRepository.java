@@ -1,6 +1,9 @@
 package com.example.umc9thMission.domain.mission.repository;
 
 import com.example.umc9thMission.domain.mission.entity.Mission;
+import com.example.umc9thMission.domain.restaurant.entity.Restaurant;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +21,5 @@ public interface MissionRepository extends JpaRepository<Mission,Long> {
             "ORDER BY m.id DESC")
     List<Mission> findAvailableMissionsByMember(@Param("memberId") Long memberId);
 
+    Page<Mission> findAllByRestaurant(Restaurant restaurant, Pageable pageable);
 }

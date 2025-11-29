@@ -1,6 +1,7 @@
 package com.example.umc9thMission.domain.mission.entity;
 
 import com.example.umc9thMission.domain.mission.enums.MissionStatus;
+import com.example.umc9thMission.domain.restaurant.entity.Restaurant;
 import com.example.umc9thMission.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,4 +32,9 @@ public class Mission extends BaseEntity {
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
 }

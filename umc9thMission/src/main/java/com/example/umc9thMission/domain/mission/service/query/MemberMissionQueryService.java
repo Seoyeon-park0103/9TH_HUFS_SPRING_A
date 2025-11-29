@@ -1,9 +1,12 @@
 package com.example.umc9thMission.domain.mission.service.query;
 
+import com.example.umc9thMission.domain.mission.dto.res.MemberMissionResDTO;
 import com.example.umc9thMission.domain.mission.entity.MemberMission;
 
 import java.util.List;
 
 public interface MemberMissionQueryService {
-    List<MemberMission> getMemberMissions(Long memnerId);
+    List<MemberMission> getMemberMissions(Long memberId);
+
+    MemberMissionResDTO.ProgressListDTO findMyProgressMissions(Long memberId, Integer page);
 }
