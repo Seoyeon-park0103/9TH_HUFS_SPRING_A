@@ -1,6 +1,7 @@
 package com.example.umc9thMission.domain.member.entity;
 
 import com.example.umc9thMission.domain.member.enums.Gender;
+import com.example.umc9thMission.domain.member.enums.Role;
 import com.example.umc9thMission.domain.mission.entity.MemberMission;
 import com.example.umc9thMission.domain.mission.entity.Mission;
 import com.example.umc9thMission.domain.review.entity.Review;
@@ -52,4 +53,11 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 }

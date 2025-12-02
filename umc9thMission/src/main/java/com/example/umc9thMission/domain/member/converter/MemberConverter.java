@@ -4,6 +4,7 @@ import com.example.umc9thMission.domain.member.dto.req.MemberReqDTO;
 import com.example.umc9thMission.domain.member.dto.res.MemberResDTO;
 import com.example.umc9thMission.domain.member.entity.Member;
 import com.example.umc9thMission.domain.member.enums.Gender;
+import com.example.umc9thMission.domain.member.enums.Role;
 import com.example.umc9thMission.domain.test.dto.res.TestResDTO;
 import com.example.umc9thMission.global.apiPayload.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -43,12 +44,16 @@ public class MemberConverter {
 
     //DTO -> Entitiy
     public static Member toMember(
-            MemberReqDTO.JoinDTO dto
+            MemberReqDTO.JoinDTO dto,
+            String password,
+            Role role
     ){
         return Member.builder()
                 .name(dto.name())
                 .birth(dto.birth())
                 .email(dto.email())
+                .password(password)
+                .role(role)
                 .phoneNum(dto.phoneNum())
                 .gender(dto.gender())
                 .build();
