@@ -23,6 +23,9 @@ public enum GeneralErrorCode implements BaseErrorCode{
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,
             "COMMON500_1",
             "예기치 않은 서버 에러가 발생했습니다."),
+    INVALID(HttpStatus.BAD_REQUEST,
+            "MEMBER400_1",
+            "비밀번호가 일치하지 않습니다."),
     ;
 
 

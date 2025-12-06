@@ -8,6 +8,7 @@ import com.example.umc9thMission.domain.member.enums.Role;
 import com.example.umc9thMission.domain.test.dto.res.TestResDTO;
 import com.example.umc9thMission.global.apiPayload.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Component
 public class MemberConverter {
     //객체 -> DTO
     public static TestResDTO.Testing toTestingDTO(String testing){
@@ -66,6 +68,14 @@ public class MemberConverter {
             @RequestBody MemberReqDTO.JoinDTO dto
     ){
         return null;
+    }
+
+    // DTO 변환
+    public static MemberResDTO.LoginDTO toLoginDTO(Member member, String accessToken) {
+        return MemberResDTO.LoginDTO.builder()
+                .memberId(member.getId())
+                .accessToken(accessToken)
+                .build();
     }
 
 }

@@ -6,6 +6,8 @@ import com.example.umc9thMission.domain.review.entity.Review;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,4 +30,13 @@ public class MemberReqDTO {
         //List<Long> memberMissionList
 
         ){}
+
+    // 로그인
+    public record LoginDTO(
+            @NotBlank
+            String email,
+            @NotBlank
+            String password
+    ){}
+
 }

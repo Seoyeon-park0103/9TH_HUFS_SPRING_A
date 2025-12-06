@@ -4,11 +4,13 @@ import com.example.umc9thMission.domain.member.dto.req.MemberReqDTO;
 import com.example.umc9thMission.domain.member.dto.res.MemberResDTO;
 import com.example.umc9thMission.domain.member.exception.code.MemberSuccessCode;
 import com.example.umc9thMission.domain.member.service.command.MemberCommandService;
+import com.example.umc9thMission.domain.member.service.query.MemberQueryService;
 import com.example.umc9thMission.domain.test.converter.TestConverter;
 import com.example.umc9thMission.domain.test.dto.res.TestResDTO;
 import com.example.umc9thMission.domain.test.service.query.TestQueryService;
 import com.example.umc9thMission.global.apiPayload.ApiResponse;
 import com.example.umc9thMission.global.apiPayload.code.GeneralSuccessCode;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,7 @@ public class MemberController {
 
     private final TestQueryService testQueryService;
     private final MemberCommandService memberCommandService;
+    private final MemberQueryService memberQueryService;
 
     @GetMapping("/{memberId}")
     public ApiResponse<TestResDTO.Testing> test() throws Exception{
@@ -42,11 +45,27 @@ public class MemberController {
         return ApiResponse.onSuccess(code, TestConverter.toExceptionDTO("This is Test!"));
     }
 
+    /*
     @PostMapping("/sign-up")
     public ApiResponse<MemberResDTO.JoinDTO> signUp(
             @RequestBody MemberReqDTO.JoinDTO dto
     ){
         return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberCommandService.signup(dto));
     }
+*/
+    // 회원가입
+    @PostMapping("/sign-up")
+    public ApiResponse<MemberResDTO.JoinDTO> signUp(
+            @RequestBody @Valid MemberReqDTO.JoinDTO dto
+    ){
+        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberCommandService.signup(dto));
+    }
 
+    // 로그인
+    @PostMapping("/login")
+    public ApiResponse<MemberResDTO.LoginDTO> login(
+            @RequestBody @Valid MemberReqDTO.LoginDTO dto
+    ){
+        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberQueryService.login(dto));
+    }
 }
